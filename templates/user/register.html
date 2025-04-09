@@ -1,124 +1,22 @@
 {% extends 'partials/base.html' %}
 {% block title %}Register Page{% endblock %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
-<style>
-    .register-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 60px 20px;
-        background: #f0f2f5;
-    }
-
-    .register-form {
-        background: #ffffff;
-        padding: 40px;
-        border-radius: 15px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-        width: 100%;
-        max-width: 420px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .register-form h2 {
-        text-align: center;
-        margin-bottom: 25px;
-        color: #333;
-    }
-
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-    label {
-        font-weight: 600;
-        display: block;
-        margin-bottom: 8px;
-        color: #333;
-    }
-
-    input {
-        width: 100%;
-        padding: 12px 15px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 15px;
-        transition: border-color 0.2s;
-    }
-
-    input:focus {
-        border-color: #007bff;
-        outline: none;
-    }
-
-    small {
-        display: block;
-        margin-top: 6px;
-        color: #888;
-        font-size: 13px;
-    }
-
-    .errorlist {
-        color: #e74c3c;
-        font-size: 13px;
-        margin-top: 5px;
-        list-style: none;
-        padding-left: 0;
-    }
-
-    .submit-btn {
-        width: 100%;
-        background-color: #28a745;
-        color: white;
-        padding: 12px;
-        font-size: 16px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background 0.3s;
-    }
-
-    .submit-btn:hover {
-        background-color: #218838;
-    }
-</style>
-
-<div class="register-wrapper">
-    <form method="POST" class="register-form">
-        {% csrf_token %}
-        <h2>Trackventory Register</h2>
-
-        {{ form.non_field_errors }}
-
-        <div class="form-group">
-            {{ form.username.label_tag }}
-            {{ form.username }}
-            {% if form.username.help_text %}
-            <small>{{ form.username.help_text }}</small>
-            {% endif %}
-            {{ form.username.errors }}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-6 offset-md-3">
+                <div class="border bg-white p-3">
+                    <h3>TrackVentory Registration</h3>
+                    <hr>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input class="btn btn-success" type="submit" value="Register">
+                    </form>
+                </div>
+            </div>
         </div>
-
-        <div class="form-group">
-            {{ form.password1.label_tag }}
-            {{ form.password1 }}
-            {% if form.password1.help_text %}
-            <small>{{ form.password1.help_text|safe }}</small>
-            {% endif %}
-            {{ form.password1.errors }}
-        </div>
-
-        <div class="form-group">
-            {{ form.password2.label_tag }}
-            {{ form.password2 }}
-            {% if form.password2.help_text %}
-            <small>{{ form.password2.help_text }}</small>
-            {% endif %}
-            {{ form.password2.errors }}
-        </div>
-
-        <button type="submit" class="submit-btn">Register</button>
-    </form>
-</div>
+    </div>
 {% endblock %}
