@@ -10,7 +10,7 @@ def register(request):
         if form.is_valid():
             form.save()
             # messages.success(request, 'Account created successfully! You can now log in.')  # Optional message
-            return redirect('dashboard-index')  # Make sure this URL name exists in your urls.py
+            return redirect('user-login')  # Make sure this URL name exists in your urls.py
     else:
         form = CreateUserForm()
 
