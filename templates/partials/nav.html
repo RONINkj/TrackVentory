@@ -26,7 +26,7 @@
                     <a class="nav-link text-white" href="{% url 'dashboard-index' %}">Dashboard</a>
                 </li> -->
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="profile.html">{{ user.username }} Profile</a>
+                    <a class="nav-link text-white" href="{% url 'user-profile' %}">{{ user.username }} Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#"
