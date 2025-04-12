@@ -1,70 +1,63 @@
+
 <!-- Navbar -->
-<!-- <nav class="navbar navbar-expand-lg navbar-info bg-info">
-    <div class="container">
-        <a class="navbar-brand text-white" href="{% url 'dashboard-index' %}">TrackVentory</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+<nav class="navbar navbar-expand-lg navbar-info bg-info">
+    <div class="container d-flex justify-content-between align-items-center">
+
+        <!-- Brand on the left -->
+        <a class="navbar-brand text-white font-weight-bold" href="{% url 'dashboard-index' %}">TrackVentory</a>
+        {% if user.is_authenticated %}
+
+        <!-- Toggle button for mobile -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="{% url 'dashboard-index' %}">Dashboard</a>
+            </li>
+        </ul>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link text-white" href="{% url 'dashboard-index' %}">Dashboard <span
-                            class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link text-white" href="profile.html">Admin Profile <span
-                            class="sr-only">(current)</span></a>
+        <!-- Nav links -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+            <ul class="navbar-nav d-flex align-items-center">
+                <!-- <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'dashboard-index' %}">Dashboard</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="profile.html">{{ user.username }} Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" id="logout-form" href="#"
+                    <a class="nav-link text-white" href="#"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                 </li>
             </ul>
-
         </div>
-    </div>
-</nav> -->
 
-<!-- Logout Form -->
-<!-- <form id="logout-form" action="{% url 'user-logout' %}" method="post" style="display:none;">
-    {% csrf_token %}
-</form> -->
+        <!-- Hidden logout form -->
+        <form id="logout-form" method="POST" action="{% url 'user-logout' %}" style="display: none;">
+            {% csrf_token %}
+        </form>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-info bg-info">
-    <div class="container">
-        <a class="navbar-brand text-white" href="{% url 'dashboard-index' %}">TrackVentory</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link text-white" href="{% url 'dashboard-index' %}">Dashboard <span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link text-white" href="profile.html">Admin Profile <span class="sr-only">(current)</span></a>
+        {% else %}
+        <!-- Non-authenticated view -->
+        <div class="ml-auto">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'user-register' %}">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" id="logout-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    <a class="nav-link text-white" href="{% url 'user-login' %}">Login</a>
                 </li>
             </ul>
         </div>
+        {% endif %}
+
     </div>
 </nav>
 
 <!-- Logout Form -->
-<form id="logout-form" action="{% url 'user-logout' %}" method="post" style="display:none;">
-    {% csrf_token %}
-</form>
-
-
- 
+<!-- <form id="logout-form" action="{% url 'user-logout' %}" method="post" style="display:none;">
+            {% csrf_token %}
+</form> -->
