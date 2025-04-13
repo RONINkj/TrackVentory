@@ -16,7 +16,7 @@ def staff(request):
 # @login_required(login_url='user-login')
 @login_required
 def product(request):
-    items=Product.abjects.all()
+    items=Product.objects.all()
     context={
         'items': items,
     }
