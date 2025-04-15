@@ -2,14 +2,16 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm,UserUpdateForm,ProfileUpdateForm
-# from django.contrib import messages  # Optional but useful for feedback
+
+from django.contrib import messages  # Optional but useful for feedback
 
 def register(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            # messages.success(request, 'Account created successfully! You can now log in.')  # Optional message
+            username=form.cleaned_data.get('username')
+            messages.success(request,f'Account has beem created for {username}. Continue to login')  # Optional message
             return redirect('user-login')  # Make sure this URL name exists in your urls.py
     else:
         form = CreateUserForm()
