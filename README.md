@@ -9,5 +9,5 @@ TractVentory is an inventory management system that enables streamlined product 
 
 ✔️ Integrated with Django's database system to manage product listings, staff registration, login/logout, and staff profile updates  
 
-✔️ Included an interactive dashboard using Chart.js to visualize real-time data such as the number of orders placed and the total products in  
-inventory
+✔️ Included an interactive dashboard using Chart.js to visualize real-time data such as the number of orders placed and the total products in
+inventory  
